@@ -1,5 +1,7 @@
 <div id="fb-root"></div>
 
+<link rel="stylesheet" type="text/css" href="app.css">
+
 <script>
   window.fbAsyncInit = function() {
     FB.init({
@@ -30,13 +32,31 @@
     
 ?>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js">
+
+<script src="//connect.facebook.net/en_US/all.js">
 </script>
 
-<script>
-
-FB.api('/me', function(response) {
-  alert('Your name is ' + response.name);
-});
-
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js">
 </script>
+
+<script src="app.js">
+</script>
+
+<div id="username">
+User name goes here
+</div>
+
+<div id="terminal" onclick="Telem('setter').focus();">
+	<textarea type="text" id="setter" onkeydown="writeit(this, event);moveIt(this.value.length, event)" onkeyup="writeit(this, event)" onkeypress="writeit(this, event);"></textarea>
+	<div id="getter">
+		<span id="writer"></span><b class="cursor" id="cursor">B</b>
+	</div>
+</div>
+	
+
+
+
+
+
+
+
