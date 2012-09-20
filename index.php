@@ -1,3 +1,35 @@
+<?php
+define('APP_ID', '346459112112091');
+define('APP_SECRET', '5496850cbe8b7e287c28fd44de02ac14');
+require('./FB/src/facebook.php');
+require('./User.php');
+
+$FB = new Facebook( array(
+		'appId'  => APP_ID,
+  		'secret' => APP_SECRET));
+
+// Get User ID
+$user = $facebook->getUser();
+
+if ($user) {
+	try {
+		// Proceed knowing you have a logged in user who's authenticated.
+		$user_profile = $facebook->api('/me');
+	} catch (FacebookApiException $e) {
+		error_log($e);
+		$user = null;
+	}
+}
+
+// Login or logout url will be needed depending on current user state.
+if (!$user) {
+	$loginUrl = $facebook->getLoginUrl(array('scope'=>'user_likes','email','user_status','friends_likes'));
+}
+else {
+	$user = new User($FB);
+}
+?>
+
 <div id="fb-root"></div>
 
 <script>
