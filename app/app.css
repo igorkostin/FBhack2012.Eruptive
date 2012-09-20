@@ -1,34 +1,40 @@
 body {
-	margin: 0px;
-	padding: 0px;
-	height: 99%;
-}
-
-textarea#setter  {
-	left: -1000px;
-	position: absolute;
-}
-
-.cursor {
-	font-size: 12px;
-	background-color: red;
-	color: red;
-	position: relative;
-	opacity: 0.5;
-}
-
-#terminal {
-	margin: 8px;
-	cursor: text;
-	height: 500px;
-                             overflow: auto;
-}
-
-#writer {
-	font-family: cursor, courier;
-	font-weight: bold;
-}
-
-#getter {
-        margin: 5px;
-}
+				margin: 0px;
+				padding: 0px;
+				height: 99%;
+				background-color: #222;
+				text-align: center;
+			}
+			
+			textarea#setter  {
+				left: -1000px;
+				position: absolute;
+			}
+			
+			.cursor {
+				font-size: 10px;
+				background-color: #AAA;
+				color: #AAA;
+				position: relative;
+				opacity: 0.5;
+			}
+			
+			#terminal {
+				margin: 0 auto;
+				cursor: text;
+				width: 600px;
+				height: 500px;
+                overflow: auto;
+                text-align: left;
+			}
+			
+			#writer {
+				font-family: courier, fixed;
+				font-weight: normal;
+				font-size: 12px;
+				color: #33D011;
+			}
+            
+            #getter {
+            	margin: 5px;
+            }
