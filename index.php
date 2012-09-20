@@ -1,4 +1,5 @@
 <div id="fb-root"></div>
+
 <script>
   window.fbAsyncInit = function() {
     FB.init({
@@ -28,6 +29,8 @@
     echo "seems to be coool though test test test";
     
 ?>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"/>
 
 <script>
 FB.api('/me', function(response) {
