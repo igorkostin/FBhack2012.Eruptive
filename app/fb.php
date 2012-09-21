@@ -50,15 +50,11 @@ User name goes here
 </div>
 
 <div id="terminal" onclick="$$('setter').focus();">
-		<textarea type="text" id="setter" onkeydown="writeit(this, event);moveIt(this.value.length, event)" onkeyup="writeit(this, event)" onkeypress="writeit(this, event);"></textarea>
+		<textarea type="text" id="setter" onkeypress="captureKey(this, event);"></textarea>
 		<div id="getter">
 			<span id="writer"></span><b class="cursor" id="cursor">B</b>
 		</div>
 	</div>
-	
-
-
-
 	</body>
 </html>
 
