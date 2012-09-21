@@ -5,12 +5,18 @@
 		
 		<script>
 
-			var health;
-			var maxhealth;
-			var gold;
-			var strength;
-			var attack;
-			var defense;
+			var health = 15;
+			var maxhealth = 20;
+			var gold =500;
+			var strength = 20;
+			var attack = 10;
+			var defense = 10;
+			var energy = 10;
+			var name = "Jeff Day";
+
+			var area = 'main';
+			
+			var keyCommand;
 		
 			function $$(elid){
 				return document.getElementById(elid);
@@ -19,27 +25,63 @@
 			var cursor;
 			window.onload = init;
 
-			function mainMenu()
+			function displayPrompt()
 			{
-				printf("<img src='http://img.ncix.com/gif/57530sss.jpg'/>\n");
-				printf("Gastown Text Adventure ---------------------------------\n");
-				printf("-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n\n");
-				printf("(G) Go to Inn");
-				printf("(F) Woodwards battle arena (Fight friends)\n");
-				printf("(G) Go to the Cambie (Tavern)\n");
-				printf("(R) Roam the streets of Gastown\n") 
-				printf("(S) View Stats\n");
-				printf("(A) Friend activity");
+				printf("\n\nHealth (" + health + " of " + maxhealth + ") Gold: " + gold + " Energy: " + energy + "\n");
+				printf("Command, " + name + ": ");
 			}
 
-			function innMenu()
+			function mainMenu()
 			{
+				printf("<img src='http://fbhackeruptive2.icsoft.ca/Banner.jpg'/>\n");
+				printf("\n\nGastown Text Adventure -------------------------------------------------------\n");
+				printf("-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n\n");
+				printf("(G) Go to the Cambie\n");
+				printf("(F) Woodwards battle arena (Fight friends)\n");
+				printf("(R) Roam the streets of Gastown\n") 
+				printf("(S) View Stats\n");
+				printf("(A) Friend activity\n");
+
+				displayPrompt();
+
+				var objDiv = document.getElementById("terminal");
+				objDiv.scrollTop = objDiv.scrollHeight;
+
 				
 			}
 
-			function displayPrompt()
+			function mainInn()
 			{
-				printf("\n\nHealth (" + health + " of " + maxhealth + ") Gold: " + gold);
+				printf("\n\n\n\n<span style='color: white'>THE CAMBIE </span> -------------------------------------------------------\n");
+				printf("-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n\n");
+				printf("(K) Talk to Inn Keeper\n");
+				printf("(B) Approach the bar\n");
+				printf("(G) Put on sunglasses\n");
+				printf("(M) Call the bar maid\n") 
+				printf("(S) Scream 'Who wants a fight'\n");
+				printf("(G) Go back to Main Menu");
+
+				displayPrompt();
+
+				var objDiv = document.getElementById("terminal");
+				objDiv.scrollTop = objDiv.scrollHeight;
+
+			}
+
+			function mainBattle()
+			{
+				printf("\n\n\n\n<span style='color: white'>WOODWARDS BATTLE ARENA </span> -------------------------------------------------------\n")
+				printf("-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n\n");
+				printf("XXX is calling you out! Are you ready to battle?\n");
+				printf("(F) Fight! Accept the challenge.\n");
+				printf("(S) View this guys stats\n");
+				printf("(R) Run away... like a little baby.\n");
+				
+				displayPrompt();
+
+				var objDiv = document.getElementById("terminal");
+				objDiv.scrollTop = objDiv.scrollHeight;
+				
 			}
 
 			function driverLoop()
@@ -57,10 +99,14 @@
 				//cursor = $$("cursor").css('left','0px');		
 				alert('balls');
 
+				$$('setter').focus();
 				cursor = $$("cursor");		
 				cursor.style.left = "0px";
 
 				mainMenu();
+
+				var objDiv = document.getElementById("terminal");
+				objDiv.scrollTop = objDiv.scrollHeight;
 			}
 
 			function printf(text)
@@ -112,20 +158,65 @@
 				}
 
 			}
+
+			function captureKey(count, e) {
+				e = e || window.event;
+				var keycode = e.keyCode || e.which;
+
+				var value = String.fromCharCode(e.keyCode).toUpperCase();
+				alert(value);
+
+				printf("<span style='color: white'> " + value + "</span>");
+
+				// detect where we are 
+				if (area == 'main')
+				{
+					if (value == 'G')
+					{
+						area = 'inn';
+						mainInn();
+					}
+					else if (value == 'F')
+					{
+						arena = 'battle';
+						mainBattle();
+					}
+
+				}
+				else if (area == 'inn')
+				{
+					if (value == 'G')
+					{
+						area = 'main';
+						mainMenu();
+					}
+				}
+				else if (area == 'battle')
+				{
+					if (value == 'R')
+					{
+						area = 'main';
+						mainMenu();
+					}
+
+				}
+				
+				var objDiv = document.getElementById("terminal");
+				objDiv.scrollTop = objDiv.scrollHeight;
+			}
 			
 			function alert(txt){
 			console.log(txt);
 			}
 			
 		</script>
-		
-		]
+
 		<style type="text/css">
 			body {
 				margin: 0px;
 				padding: 0px;
 				height: 99%;
-				background-color: #222;
+				background-color: #000;
 				text-align: center;
 			}
 			
@@ -145,9 +236,9 @@
 			#terminal {
 				margin: 0 auto;
 				cursor: text;
-				width: 600px;
+				width: 650px;
 				height: 500px;
-                overflow: auto;
+                overflow: scroll;
                 text-align: left;
 			}
 			
@@ -166,7 +257,7 @@
 	</head>
 	<body>
 	<div id="terminal" onclick="$$('setter').focus();">
-		<textarea type="text" id="setter" onkeydown="writeit(this, event);moveIt(this.value.length, event)" onkeyup="writeit(this, event)" onkeypress="writeit(this, event);"></textarea>
+		<textarea type="text" id="setter" onkeypress="captureKey(this, event);"></textarea>
 		<div id="getter">
 			<span id="writer"></span><b class="cursor" id="cursor">B</b>
 		</div>
