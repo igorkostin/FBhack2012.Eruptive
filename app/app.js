@@ -30,9 +30,13 @@ var Eruptive = {
     	}, 
     	success: function(data) {
     		Eruptive.userInfo = data;
+    		name = data.name;
+    		
     		alert('user info received, stored in Eruptive.userInfo');
-			if (init==true && Eruptive.userInfo.name!=null)
-				printf( "Hello " + Eruptive.userInfo.name + ', welcome back to Gastown!' );
+    		Eruptive.initApp();
+    		
+			//if (init==true && Eruptive.userInfo.name!=null)
+			//	printf( "Hello " + Eruptive.userInfo.name + ', welcome back to Gastown!' );
     	}
     });
   },
@@ -40,6 +44,21 @@ var Eruptive = {
   {
 	  alert('about to send wallpost');
 	  
+  },
+  
+  initApp: function() 
+  {
+	//cursor = $$("cursor").css('left','0px');		
+	alert('balls');
+
+	$$('setter').focus();
+	cursor = $$("cursor");		
+	cursor.style.left = "0px";
+
+	mainMenu();
+
+	var objDiv = document.getElementById("terminal");
+	objDiv.scrollTop = objDiv.scrollHeight;
   }
   
   
@@ -60,9 +79,8 @@ window.fbAsyncInit = function() {
         xfbml      : false  // parse XFBML
       });
 
-      FB.login(function(response) {
-    	  Eruptive.pageLoaded();
-     });
+    
+    Eruptive.pageLoaded();
 
       
 };
@@ -85,7 +103,7 @@ function $$(elid){
 }
 
 var cursor;
-window.onload = init;
+//window.onload = init;
 
 function displayPrompt()
 {
@@ -157,20 +175,6 @@ function driverLoop()
 	}
 }
 
-
-function init(){
-	//cursor = $$("cursor").css('left','0px');		
-	alert('balls');
-
-	$$('setter').focus();
-	cursor = $$("cursor");		
-	cursor.style.left = "0px";
-
-	mainMenu();
-
-	var objDiv = document.getElementById("terminal");
-	objDiv.scrollTop = objDiv.scrollHeight;
-}
 
 function printf(text)
 {
