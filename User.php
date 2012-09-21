@@ -24,6 +24,42 @@ class User
 			$this->createNewUser();
 	}
 	
+	public function getUser()
+	{
+		$db = new DB();
+		$sql = 'SELECT * FROM Users WHERE fbuid='.$this->userData['baseData']['id'];
+		$result = $db->query($sql);
+		return $result;
+	}
+	
+	/*public function postResult()
+	{
+		$wall_post = array('access_token'=>$access_token,
+				'mission' => 'http://samples.ogp.me/442811099074399', // //Object we are operating on
+				'caption' => 'Bullets go through these Reapers like butter. We need to clear them out of town. Click for free Cash',
+				'link' => 'http://grimdev.kaboomsocial.com?blah=true',
+				//'description' => 'this is a description',
+				'picture' => 'http://grimdev.kaboomsocial.com/media/images/assets/fb_icons/icon_chomper_female.png',
+				'actions' => array(array('name' => 'Get Cash',
+						'link' => 'http://grimdev.kaboomsocial.com?blah=true'))
+		);
+		 
+		
+		$result = $this->fb->api('/' . $this->userData['baseData']['id'] . '/fbhackeruptive' . ':kill' ,'POST', $wall_post);
+		KaboomDump($result);
+		KaboomDebug('result: ' . $result);
+		return $result;
+	}*/
+	
+	public function getRandomOpponent()
+	{
+		$db = new DB();
+		$sql = 'SELECT * FROM Users WHERE fbuid!='.$this->userData['baseData']['id'];
+		$result = $db->query($sql);
+		$item = rand(0, count($result)-1);
+		return $result[$item];
+	}
+	
 	private function checkForNewUser()
 	{
 		$db = new DB();
