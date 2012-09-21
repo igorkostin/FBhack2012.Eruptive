@@ -1,35 +1,48 @@
 var Eruptive = {
+
+  userInfo: {
+	  // template of the user info we have from DB:
+	  name: "",
+	  energy: 0,
+	  xp: 0,
+	  level: 0,
+	  health: 0,
+	  attack: 0,
+	  defense: 0,
+	  weapon_id: 0,
+	  armor_id: 0	  
+  },
+		
   pageLoaded: function() 
   {
 	// page loaded, init the game!
-     FB.api('/me', function(response) {
-       $("#username").html( "Player name: " + response.name );
-     });
-     
-	 alert('initialized!');
+	Eruptive.updateUserInfo();
+	alert('initialized!');
+  },
+  updateUserInfo: function()
+  {
+	// let's pull user's data...
+    $.ajax({url: '/api.php', 
+    	type: "POST", 
+    	dataType: 'json', 
+    	data: { 
+    		method: "getUserInfo"
+    	}, success: function(data) {
+    		Eruptive.userInfo = data;
+    		alert('user info received');
+    	}
+    });
   }
+  
+  //points
+
 		
 }; // Eruptive
 
 
-$().ready( {
-
-    FB.init({
-        appId      : '346459112112091', // App ID
-        oauth : true,
-        channelUrl : '//fbhackeruptive2.icsoft.ca/channel.php', // Channel File
-        status     : true, // check login status
-        cookie     : true, // enable cookies to allow the server to access the session
-        xfbml      : false  // parse XFBML
-      });
-
-      FB.login(function(response) {
-    	  Eruptive.pageLoaded();
-     });
-
-      
+$().ready( function(){
+    Eruptive.pageLoaded();
 });
-
 
 	function $$(elid){
 		return document.getElementById(elid);

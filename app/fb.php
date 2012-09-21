@@ -1,27 +1,11 @@
 <html>
 	<head>
 
+<div id="fb-root"></div>
+
 <link rel="stylesheet" type="text/css" href="app.css">
 
-<?php
-    //echo "seems to be coool though test test test";
-?>
-
-<script src="//connect.facebook.net/en_US/all.js">
-</script>
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js">
-</script>
-
-<script src="app.js">
-</script>
-	
-	</head>
-	<body>
-	
-	<div id="fb-root"></div>
-	
-	<script>
+<script>
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '346459112112091', // App ID
@@ -43,6 +27,23 @@
      ref.parentNode.insertBefore(js, ref);
    }(document));
 </script>
+
+
+<?php
+
+    //echo "seems to be coool though test test test";
+    
+?>
+</script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js">
+</script>
+
+<script src="app.js">
+</script>
+	
+	</head>
+	<body>
 
 <div id="username">
 User name goes here
