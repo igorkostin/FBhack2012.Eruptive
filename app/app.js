@@ -12,7 +12,7 @@ var Eruptive = {
 }; // Eruptive
 
 
-$().ready(){
+$().ready( {
 
     FB.init({
         appId      : '346459112112091', // App ID
@@ -28,7 +28,7 @@ $().ready(){
      });
 
       
-};
+});
 
 
 	function $$(elid){
@@ -101,5 +101,5 @@ $().ready(){
 	}
 	
 	function alert(txt){
-	console.log(txt);
+		console.log(txt);
 	}
