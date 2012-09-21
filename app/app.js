@@ -16,23 +16,32 @@ var Eruptive = {
   pageLoaded: function() 
   {
 	// page loaded, init the game!
-	Eruptive.updateUserInfo();
+	Eruptive.updateUserInfo( true );
 	alert('initialized!');
   },
-  updateUserInfo: function()
+  updateUserInfo: function( init )
   {
 	// let's pull user's data...
-    $.ajax({url: '/api.php', 
+    $.ajax({url: '/app/api.php', 
     	type: "POST", 
     	dataType: 'json', 
     	data: { 
     		method: "getUserInfo"
-    	}, success: function(data) {
+    	}, 
+    	success: function(data) {
     		Eruptive.userInfo = data;
-    		alert('user info received');
+    		alert('user info received, stored in Eruptive.userInfo');
+			if (init==true && Eruptive.userInfo.name!=null)
+				printf( "Hello " + Eruptive.userInfo.name + ', welcome back to Gastown!' );
     	}
     });
+  },
+  sendWallPost: function()
+  {
+	  alert('about to send wallpost');
+	  
   }
+  
   
   //points
 
