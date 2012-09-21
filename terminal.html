@@ -4,12 +4,54 @@
 		<script src="jquery-1.5.1.min.js"></script>
 		
 		<script>
-		function $$(elid){
-			return document.getElementById(elid);
-		}
+
+			var health;
+			var maxhealth;
+			var gold;
+			var strength;
+			var attack;
+			var defense;
+		
+			function $$(elid){
+				return document.getElementById(elid);
+			}
 
 			var cursor;
 			window.onload = init;
+
+			function mainMenu()
+			{
+				printf("<img src='http://img.ncix.com/gif/57530sss.jpg'/>\n");
+				printf("Gastown Text Adventure ---------------------------------\n");
+				printf("-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n\n");
+				printf("(G) Go to Inn");
+				printf("(F) Woodwards battle arena (Fight friends)\n");
+				printf("(G) Go to the Cambie (Tavern)\n");
+				printf("(R) Roam the streets of Gastown\n") 
+				printf("(S) View Stats\n");
+				printf("(A) Friend activity");
+			}
+
+			function innMenu()
+			{
+				
+			}
+
+			function displayPrompt()
+			{
+				printf("\n\nHealth (" + health + " of " + maxhealth + ") Gold: " + gold);
+			}
+
+			function driverLoop()
+			{ 
+
+				while (true)
+				{
+
+					// get keyboard input
+				}
+			}
+			
 			
 			function init(){
 				//cursor = $$("cursor").css('left','0px');		
@@ -17,10 +59,8 @@
 
 				cursor = $$("cursor");		
 				cursor.style.left = "0px";
-				printf("Gastown Text Adventure ---------------------------------\n");
-				printf("-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n\n");
-				printf("1. fuck you sack master\n");
-				printf("2. asdfasdfasdsadf\n");
+
+				mainMenu();
 			}
 
 			function printf(text)
