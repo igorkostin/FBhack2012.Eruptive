@@ -19,21 +19,24 @@ class User
 		$this->userData['userFriends'] = $fb->api('/me/friends');
 		$this->userData['userPosts'] = $fb->api('/me/posts');
 		
-		if(!$this->checkForNewUsr())
-			createNewUser();
+		$validUser = $this->checkForNewUser();
+		errorLog("valid user is " . $validUser);
+		if(!$validUser)
+			$this->createNewUser();
 	}
 	
-	private function checkForNewUsr()
+	private function checkForNewUser()
 	{
 		$db = new DB();
 		$sql = 'SELECT * FROM Users WHERE fbuid='.$this->userData['baseData']['id'];
 		$result = $db->query($sql);
-		errorLog((isset($result) && count($result) > 0));
 		return (isset($result) && count($result) > 0);
 	}
 	
 	public function createNewUser()
 	{
+		try 
+		{
 		$db = new DB();
 		
 		$fbuid = $this->userData['baseData']['id'];
@@ -58,10 +61,41 @@ class User
 					$attack.','.
 					$defense.','.
 					$weapon_id.','.
-					$armor_id.','.
+					$armor_id.
 				')';
 		errorLog($sql);
 		$db->query($sql);
+		} catch (Exception $e)
+		{
+			errorLog($e->getMessage());
+		}
 	}
+	
+	/*private function setupHealth()
+	{
+		$posts = $this->userData['userPosts'];
+		$dates = array();
+		$secPerDay = 24*60*60;
+		
+		foreach($posts as $post)
+		{
+			$date = strtotime($post['created_time']);
+			if(count($dates) > 0)
+			{
+				$curDate = (count($dates-1));
+				if($dates[ $curDate ] - $date < $secPerDay)
+					$dates[$curDate]++;
+				else
+					$dates[$curDate + 1] = 1;
+			}
+				$dates[0] = 1;
+		}
+		$total = 0;
+		foreach($dates as $date)
+		{
+			$total += $date;
+		}
+		return ( (round($total/count($dates))/25) < 25)?25:round($total/count($dates))/25;
+	}*/
 }
 ?>

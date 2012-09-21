@@ -61,17 +61,16 @@ else {
 </script>
 
 
-<?php
-
-    echo "seems to be coool though test test test";
-    
-?>
-
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js">
 </script>
 
 <script>
-FB.api('/me', function(response) {
-  alert('Your name is ' + response.name);
-});
+//FB.api('/me', function(response) {
+//  alert('Your name is ' + response.name);
+//});
+
+window.location.href="/app/app.php";
+
 </script>
+
+
