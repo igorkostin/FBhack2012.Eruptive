@@ -4,13 +4,13 @@ Class DB {
   private static $conn;
   
   function __construct() {
-    self::$conn = mysql_connect('YOUR_DB_SERVER', 'YOUR_DB_USERNAME', 'YOUR_DB_PASSWORD');
+    self::$conn = mysql_connect('192.168.1.12', 'fbhack', 'HMB97BCja3nmaMsT');
     
     if (!self::$conn) {
       die('Could not connect: ' . mysql_error());
     }
     
-    mysql_select_db("YOUR_DB_NAME", self::$conn);
+    mysql_select_db("fbhack", self::$conn);
   }
   
   
@@ -91,6 +91,10 @@ Class DB {
       //error_log('MYSQL RESULT: ' . var_export($result,1));
     }
     
-    return $result;
+    $res = array();
+    while($row = mysql_fetch_assoc($result)) {
+    	$res[] = $row;
+    }
+    return $res;
   }
 }

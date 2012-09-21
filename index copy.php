@@ -67,11 +67,13 @@ else {
     
 ?>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js">
-</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"/>
 
 <script>
 FB.api('/me', function(response) {
   alert('Your name is ' + response.name);
 });
 </script>
+<?php
+} 
+?>
