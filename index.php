@@ -1,9 +1,10 @@
 <?php
 define('APP_ID', '346459112112091');
 define('APP_SECRET', '5496850cbe8b7e287c28fd44de02ac14');
-require('./FB/src/facebook.php');
-require('./User.php');
-require('./common_lib.php');
+require_once('./FB/src/facebook.php');
+require_once('./common_lib.php');
+require_once('./db.php');
+require_once('./User.php');
 
 
 $FB = new Facebook( array(
@@ -69,8 +70,11 @@ else {
 //  alert('Your name is ' + response.name);
 //});
 
-window.location.href="/app/app.php";
+window.location.href="/app/fb.php";
 
 </script>
 
 
+<?php 
+}
+?>
