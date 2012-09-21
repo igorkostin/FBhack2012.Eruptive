@@ -49,8 +49,31 @@ var Eruptive = {
 }; // Eruptive
 
 
+<<<<<<< HEAD
 $().ready( function(){
     Eruptive.pageLoaded();
+=======
+<<<<<<< HEAD
+$().ready( {
+=======
+window.fbAsyncInit = function() {
+>>>>>>> sdfasdf
+
+    FB.init({
+        appId      : '346459112112091', // App ID
+        oauth : true,
+        channelUrl : '//fbhackeruptive2.icsoft.ca/channel.php', // Channel File
+        status     : true, // check login status
+        cookie     : true, // enable cookies to allow the server to access the session
+        xfbml      : false  // parse XFBML
+      });
+
+      FB.login(function(response) {
+    	  Eruptive.pageLoaded();
+     });
+
+      
+>>>>>>> sdfasdf
 });
 
 	function $$(elid){
